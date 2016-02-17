@@ -1,4 +1,6 @@
 const express = require('express');
+const cors = require('cors');
+const app = express();
 
 const dummyQuestions = [
   'First thing you do with your phone everyday?',
@@ -52,8 +54,6 @@ for (var i = 0; i < 400; i++) {
   };
 }
 
-const app = express();
-app.set('port', (process.env.PORT || 5000));
 
 app.get('/', (req, res) => {
   res.send('94% Dummy Server');
@@ -71,6 +71,10 @@ app.get('/question/:id', (req, res) => {
     res.status(404).json('Not found');
   }
 });
+
+app.set('port', (process.env.PORT || 5000));
+
+app.use(cors());
 
 app.listen(app.get('port'), () => {
   console.log('App started');
