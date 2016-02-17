@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+app.use(cors());
 
 const dummyQuestions = [
   'First thing you do with your phone everyday?',
@@ -73,8 +74,6 @@ app.get('/question/:id', (req, res) => {
 });
 
 app.set('port', (process.env.PORT || 5000));
-
-app.use(cors());
 
 app.listen(app.get('port'), () => {
   console.log('App started');
