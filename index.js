@@ -12,15 +12,15 @@ const dummyQuestions = [
 const levels = [];
 for (var i = 0; i < 20; i++) {
   levels[i] = {
-    id: i,
-    number: i,
+    id: i + 1,
+    number: i + 1,
     created_at: '2016-02-15 12:00:00',
     updated_at: '2016-02-15 12:00:00'
   };
   levels[i].questions = [];
   for (var j = 0; j < 20; j++) {
     levels[i].questions[j] = {
-      id: (i * 20) + j,
+      id: (i * 20) + j + 1,
       text: dummyQuestions[((i * 20) + j) % 3]
     };
   }
@@ -29,7 +29,7 @@ for (var i = 0; i < 20; i++) {
 const questions = [];
 for (var i = 0; i < 400; i++) {
   questions[i] = {
-    id: i,
+    id: i + 1,
     text: dummyQuestions[i % 3],
     answers: [{
       id: 1,
@@ -66,8 +66,8 @@ app.get('/level', (req, res) => {
 
 app.get('/question/:id', (req, res) => {
   const id = parseInt(req.params.id, 10);
-  if (questions[id]) {
-    res.json(questions[id]);
+  if (questions[id - 1]) {
+    res.json(questions[id - 1]);
   } else {
     res.status(404).json('Not found');
   }
